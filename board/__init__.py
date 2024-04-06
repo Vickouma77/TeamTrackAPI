@@ -9,6 +9,7 @@ load_dotenv()
 def create_app():
     app = Flask(__name__)
     app.config.from_prefixed_env()
+    app.logger.setLevel("INFO")
 
     database.init_app(app)
 
