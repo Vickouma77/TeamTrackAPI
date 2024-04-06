@@ -1,5 +1,6 @@
 from flask import (
-    Blueprint, 
+    Blueprint,
+    flash, 
     redirect,
     render_template,
     request,
@@ -23,7 +24,11 @@ def create():
                 (author, message)
             )
             db.commit()
+            flash(f"Thank you for posting, {author}", category="success")
             return redirect(url_for("posts.posts"))
+        else:
+            flash("Message cannot be empty", category="error")
+            
     return render_template("posts/create.html")
 
 @bp.route("/posts")
