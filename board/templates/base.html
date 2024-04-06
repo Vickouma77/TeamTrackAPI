@@ -13,6 +13,10 @@
     <section>
         <header>
             {% block header %}{% endblock header %}
+
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
         </header>
         <main>
             {% block content %}<p>No messages.</p>{% endblock content %}
